@@ -2,6 +2,8 @@
 
 Kiroween 2026 entry, **Costume Contest** category.
 
+Live site: https://wanjikuk60.github.io/Kiroween/
+
 A portfolio site where the page is dark and you explore it with a flickering lantern that follows your cursor (or finger). Each section is a room in a haunted house: Library (about), Cellar (projects), Attic (skills) and Séance (contact).
 
 ## Features
@@ -24,7 +26,7 @@ Then visit http://localhost:8000.
 Edit the text in `index.html` (name, projects, skills, links). Colors live in the `:root` block of `styles.css`.
 
 ## Deploy
-Enable GitHub Pages on the `main` branch (root folder) for a public URL.
+The site is deployed with GitHub Pages from the `main` branch (root folder).
 
 ## Built with Kiro
 See [KIRO_WRITEUP.md](KIRO_WRITEUP.md) and the `.kiro/` directory (spec, steering, hooks).
