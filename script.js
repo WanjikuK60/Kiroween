@@ -16,9 +16,12 @@
   addEventListener("touchmove", touch, { passive: true });
   move(innerWidth / 2, innerHeight * 0.4);
 
-  // Lantern flicker (radius jitter)
+  // Lantern flicker (radius jitter). Skipped while the lantern is off.
   if (!reduceMotion) {
-    setInterval(() => root.style.setProperty("--r", 160 + Math.random() * 25 + "px"), 120);
+    setInterval(() => {
+      if (body.classList.contains("lantern-off")) return;
+      root.style.setProperty("--r", 160 + Math.random() * 25 + "px");
+    }, 120);
   }
 
   const lanternBtn = document.getElementById("lantern-toggle");
