@@ -29,8 +29,8 @@ Readability and accessibility come first:
 
 It is plain HTML, CSS and JavaScript with no build step and no dependencies.
 
-Live app: <GitHub Pages URL>
-Source: <GitHub repo URL>
+Live app: https://wanjikuk60.github.io/Kiroween/
+Source: https://github.com/WanjikuK60/Kiroween
 
 ## Demo video script (about 2:30)
 
