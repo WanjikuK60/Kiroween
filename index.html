@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Haunted Portfolio</title>
+  <meta name="description" content="A haunted portfolio. Explore the rooms with your lantern.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#rooms">Skip to content</a>
+  <canvas id="fog" aria-hidden="true"></canvas>
+  <div id="darkness" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="whisper">Enter, if you dare...</p>
+    <h1 class="flicker" data-text="Your Name">Your Name</h1>
+    <p class="tagline">Software developer. Builder of things that go bump in the night.</p>
+    <div class="controls">
+      <button id="lantern-toggle" type="button" aria-pressed="true">Lantern: on</button>
+      <button id="sound-toggle" type="button" aria-pressed="false">Wind: off</button>
+    </div>
+    <p class="hint">Move your mouse (or drag a finger) to light the way.</p>
+  </header>
+
+  <main id="rooms">
+    <section class="room" aria-labelledby="r1">
+      <h2 id="r1">The Library <small>About</small></h2>
+      <p>Replace this with a short story about you. Mention what you build, what you love and what keeps you up at night.</p>
+    </section>
+
+    <section class="room" aria-labelledby="r2">
+      <h2 id="r2">The Cellar <small>Projects</small></h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Project One</h3>
+          <p>A short description of something you built.</p>
+          <p class="tags">JavaScript · Node · SQL</p>
+          <a href="#" rel="noopener">View source</a>
+        </article>
+        <article class="card">
+          <h3>Project Two</h3>
+          <p>Another creation, risen from the grave of a weekend idea.</p>
+          <p class="tags">Python · Flask</p>
+          <a href="#" rel="noopener">View source</a>
+        </article>
+        <article class="card">
+          <h3>Project Three</h3>
+          <p>Something that should not work, yet does.</p>
+          <p class="tags">React · TypeScript</p>
+          <a href="#" rel="noopener">View source</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="room" aria-labelledby="r3">
+      <h2 id="r3">The Attic <small>Skills</small></h2>
+      <ul class="skills">
+        <li>JavaScript</li><li>TypeScript</li><li>Python</li><li>HTML &amp; CSS</li>
+        <li>Git</li><li>Testing</li><li>Cloud</li>
+      </ul>
+    </section>
+
+    <section class="room" aria-labelledby="r4">
+      <h2 id="r4">The Séance <small>Contact</small></h2>
+      <p>Summon me through one of these channels.</p>
+      <p class="links">
+        <a href="mailto:you@example.com">Email</a>
+        <a href="https://github.com/" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a>
+      </p>
+    </section>
+  </main>
+
+  <footer><p>© 2026 Your Name. Built with Kiro for Kiroween.</p></footer>
+
+  <div id="ghost" aria-hidden="true">👻</div>
+  <script src="script.js"></script>
+</body>
+</html>

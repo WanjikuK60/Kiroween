@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Accessibility check on save",
+      "trigger": "PostFileSave",
+      "description": "Reminds the agent to keep accessibility rules after edits",
+      "matcher": "\\.(css|js|html)$",
+      "action": {
+        "type": "agent",
+        "prompt": "A site file was saved. Verify the change still respects prefers-reduced-motion, keeps visible keyboard focus, and does not hide text from users with the lantern off."
+      }
+    }
+  ]
+}
