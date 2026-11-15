@@ -1,9 +1,9 @@
 # How Kiro was used
 
-This write-up lists only what is in this repository. Lines marked **[confirm]** are things only the author can answer.
+This write-up lists only what is in this repository and what happened in the build session.
 
 ## Kiro app
-Built in the **Kiro IDE**, in one agent chat session. I did not try the CLI, Web or Crew. **[confirm]**
+Built in the **Kiro IDE**, in one agent chat session. I did not try the CLI, Web or Crew, so I cannot compare them.
 
 ## What was built with Kiro
 I asked for a haunted portfolio for the Costume Contest category and answered the agent's scoping questions (category, content, stack, look). I chose "go with defaults", so the agent built a plain HTML/CSS/JS site with a lantern cursor. I then had the agent fill in the real content from my public GitHub profile and repos.
