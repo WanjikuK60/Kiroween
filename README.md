@@ -5,7 +5,7 @@ Kiroween 2026 entry, **Costume Contest** category.
 A portfolio site where the page is dark and you explore it with a flickering lantern that follows your cursor (or finger). Each section is a room in a haunted house: Library (about), Cellar (projects), Attic (skills) and Séance (contact).
 
 ## Features
-- Lantern cursor with flicker, toggleable for readability.
+- Lantern that follows the cursor or your finger, with flicker. It can be toggled off for readability.
 - Drifting fog on a canvas layer, plus an occasional ghost flyby.
 - Wind ambience synthesized with WebAudio. It is off by default and needs no audio files.
 - Rooms fade in as you scroll to them.

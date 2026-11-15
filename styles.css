@@ -22,7 +22,7 @@ body {
 #darkness {
   position: fixed; inset: 0; z-index: 50; pointer-events: none;
   background: radial-gradient(circle var(--r) at var(--x, 50%) var(--y, 40%),
-    transparent 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.93) 100%);
+    transparent 0%, rgba(0,0,0,.3) 55%, rgba(0,0,0,.82) 100%);
   transition: opacity .4s;
 }
 body.lantern-off #darkness { opacity: 0; }
@@ -88,4 +88,4 @@ footer { text-align: center; color: var(--dim); padding: 3rem 1rem 5rem; }
   html { scroll-behavior: auto; }
 }
 /* On touch devices without a pointer, keep the darkness lighter so content is readable */
-@media (hover: none) { #darkness { background: radial-gradient(circle var(--r) at var(--x, 50%) var(--y, 40%), transparent 0%, rgba(0,0,0,.3) 60%, rgba(0,0,0,.8) 100%); } }
+@media (hover: none) { #darkness { background: radial-gradient(circle var(--r) at var(--x, 50%) var(--y, 40%), transparent 0%, rgba(0,0,0,.25) 60%, rgba(0,0,0,.7) 100%); } }

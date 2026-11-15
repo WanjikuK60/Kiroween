@@ -10,6 +10,10 @@
   };
   addEventListener("pointermove", (e) => move(e.clientX, e.clientY), { passive: true });
   addEventListener("pointerdown", (e) => move(e.clientX, e.clientY), { passive: true });
+  // Touch scrolling cancels pointer events, so follow the finger with touch events too
+  const touch = (e) => { const t = e.touches[0]; if (t) move(t.clientX, t.clientY); };
+  addEventListener("touchstart", touch, { passive: true });
+  addEventListener("touchmove", touch, { passive: true });
   move(innerWidth / 2, innerHeight * 0.4);
 
   // Lantern flicker (radius jitter)
