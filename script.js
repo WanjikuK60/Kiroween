@@ -114,6 +114,32 @@
     if (windIsOn() && !soundBtn.contains(e.target)) setWind(true);
   };
   ["pointerdown", "keydown", "touchend"].forEach((t) => addEventListener(t, firstGesture));
+  // Email links: mailto only works when an email app is set up, so also copy the address
+  const toast = document.createElement("div");
+  toast.className = "toast"; toast.setAttribute("role", "status"); toast.setAttribute("aria-live", "polite");
+  document.body.appendChild(toast);
+  let toastTimer;
+  const showToast = (text) => {
+    toast.textContent = text; toast.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 4000);
+  };
+  const copyText = async (text) => {
+    try { await navigator.clipboard.writeText(text); return true; } catch { /* fall back below */ }
+    const area = document.createElement("textarea");
+    area.value = text; area.setAttribute("readonly", ""); area.style.position = "fixed"; area.style.opacity = "0";
+    document.body.appendChild(area); area.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch { ok = false; }
+    area.remove();
+    return ok;
+  };
+  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+    link.addEventListener("click", async () => {
+      const address = decodeURIComponent(link.getAttribute("href").slice(7).split("?")[0]);
+      showToast((await copyText(address)) ? "📋 Email copied: " + address : "✉️ Email me at " + address);
+    });
+  });
+
   // Lights: a readable parchment theme that turns off the lantern and fog
   const lightsBtn = document.getElementById("lights-toggle");
   const setLights = (on) => {

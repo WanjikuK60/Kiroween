@@ -90,7 +90,11 @@
   a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
   .links { display: flex; gap: 1.5rem; font-size: 1.3rem; }
   footer { text-align: center; color: var(--dim); padding: 2rem 1rem 4rem; font-size: .9rem; }
-  @media (prefers-reduced-motion: reduce) { h1 { animation: none; } }
+.toast { position: fixed; left: 50%; bottom: 1.5rem; z-index: 100; transform: translate(-50%, 1rem); max-width: calc(100% - 2rem);
+  background: #120f19; color: #f3e9d2; border: 1px solid var(--accent); box-shadow: 0 0 20px var(--glow); padding: .6rem 1.1rem;
+  font-size: 1rem; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce) { h1 { animation: none; } .toast { transition: none; } }
 </style>
 </head>
 <body${preview ? ' class="lit"' : ""}>
@@ -120,6 +124,31 @@
     const lit = document.body.classList.toggle("lit");
     btn.textContent = "Lantern: " + (lit ? "off" : "on");
     btn.setAttribute("aria-pressed", String(!lit));
+  });
+  // Email links: mailto only works when an email app is set up, so also copy the address
+  const toast = document.createElement("div");
+  toast.className = "toast"; toast.setAttribute("role", "status"); toast.setAttribute("aria-live", "polite");
+  document.body.appendChild(toast);
+  let toastTimer;
+  const showToast = (text) => {
+    toast.textContent = text; toast.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 4000);
+  };
+  const copyText = async (text) => {
+    try { await navigator.clipboard.writeText(text); return true; } catch { /* fall back below */ }
+    const area = document.createElement("textarea");
+    area.value = text; area.setAttribute("readonly", ""); area.style.position = "fixed"; area.style.opacity = "0";
+    document.body.appendChild(area); area.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch { ok = false; }
+    area.remove();
+    return ok;
+  };
+  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+    link.addEventListener("click", async () => {
+      const address = decodeURIComponent(link.getAttribute("href").slice(7).split("?")[0]);
+      showToast((await copyText(address)) ? "📋 Email copied: " + address : "✉️ Email me at " + address);
+    });
   });
 <\/script>
 </body>

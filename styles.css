@@ -208,3 +208,9 @@ body.lights-on .hidden-ghost { opacity: .15; }
 }
 /* On touch devices without a pointer, keep the darkness lighter so content is readable */
 @media (hover: none) { #darkness { background: radial-gradient(circle var(--r) at var(--x, 50%) var(--y, 40%), transparent 0%, rgba(0,0,0,.25) 60%, rgba(0,0,0,.7) 100%); } }
+
+.toast { position: fixed; left: 50%; bottom: 1.5rem; z-index: 100; transform: translate(-50%, 1rem); max-width: calc(100% - 2rem);
+  background: #120f19; color: #f3e9d2; border: 1px solid var(--accent); box-shadow: 0 0 20px var(--glow); padding: .6rem 1.1rem;
+  font-size: 1rem; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
