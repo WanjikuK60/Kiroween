@@ -13,7 +13,7 @@ A portfolio site where the page is dark and you explore it with a flickering lan
 | The Cellar | Projects as haunted portraits that flip to reveal details, with potion filters (Python, JavaScript, TypeScript, AI) |
 | The Spellbook | What I'm learning, brewing in a bubbling cauldron |
 | The Attic | Skills |
-| The Summoning Circle | **Build your own haunted portfolio**: fill in a form, watch a live preview, then download it as one HTML file or **deploy it to your own GitHub Pages** in one click |
+| The Summoning Circle | **Build your own haunted portfolio**: fill in a form, watch a live preview, then download it as one HTML file or **deploy it to your own GitHub Pages** in one click. See the [live example](https://wanjikuk60.github.io/Kiroween/demo/) |
 | The Séance | Contact |
 
 ## Features
