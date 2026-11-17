@@ -101,4 +101,68 @@
     soundBtn.setAttribute("aria-pressed", String(on));
     soundBtn.textContent = "Wind: " + (on ? "on" : "off");
   });
+  // Lights: a readable parchment theme that turns off the lantern and fog
+  const lightsBtn = document.getElementById("lights-toggle");
+  const setLights = (on) => {
+    body.classList.toggle("lights-on", on);
+    lightsBtn.textContent = "Lights: " + (on ? "on" : "off");
+    lightsBtn.setAttribute("aria-pressed", String(on));
+    try { localStorage.setItem("haunted-lights", on ? "on" : "off"); } catch { /* storage blocked */ }
+  };
+  lightsBtn.addEventListener("click", () => setLights(!body.classList.contains("lights-on")));
+  try { if (localStorage.getItem("haunted-lights") === "on") setLights(true); } catch { /* storage blocked */ }
+
+  // Ghost hunt: three hidden ghosts unlock a secret message
+  const ghosts = document.querySelectorAll(".hidden-ghost");
+  const ghostCount = document.getElementById("ghost-count");
+  const secret = document.getElementById("secret");
+  const secretClose = document.getElementById("secret-close");
+  let lastFocus = null;
+  const found = new Set();
+  const openSecret = () => {
+    lastFocus = document.activeElement;
+    secret.hidden = false;
+    secretClose.focus();
+  };
+  const closeSecret = () => {
+    secret.hidden = true;
+    if (lastFocus) lastFocus.focus();
+  };
+  ghosts.forEach((g) => g.addEventListener("click", () => {
+    if (found.has(g.dataset.ghost)) return;
+    found.add(g.dataset.ghost);
+    g.classList.add("found");
+    g.setAttribute("aria-label", "Ghost found");
+    ghostCount.textContent = found.size === ghosts.length
+      ? "All " + ghosts.length + " ghosts found! 🎉"
+      : "Ghosts found: " + found.size + " of " + ghosts.length;
+    if (found.size === ghosts.length) setTimeout(openSecret, 700);
+  }));
+  secretClose.addEventListener("click", closeSecret);
+  secret.addEventListener("click", (e) => { if (e.target === secret) closeSecret(); });
+  addEventListener("keydown", (e) => { if (e.key === "Escape" && !secret.hidden) closeSecret(); });
+
+  // Portraits flip on hover or focus; tapping flips them on touch screens
+  document.querySelectorAll(".card.flip").forEach((card) => {
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      card.classList.toggle("flipped");
+    });
+  });
+
+  // Potion filters for the projects
+  const potions = document.querySelectorAll(".potion");
+  const cards = document.querySelectorAll(".card.flip");
+  const filterStatus = document.getElementById("filter-status");
+  potions.forEach((p) => p.addEventListener("click", () => {
+    const tag = p.dataset.filter;
+    potions.forEach((q) => q.setAttribute("aria-pressed", String(q === p)));
+    let shown = 0;
+    cards.forEach((c) => {
+      const match = tag === "all" || c.dataset.tags.split(" ").includes(tag);
+      c.classList.toggle("is-hidden", !match);
+      if (match) shown++;
+    });
+    filterStatus.textContent = tag === "all" ? "" : "Showing " + shown + " of " + cards.length + " projects.";
+  }));
 })();

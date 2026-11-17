@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Haunted Portfolio</title>
-  <meta name="description" content="A haunted portfolio. Explore the rooms with your lantern.">
+  <meta name="description" content="A haunted portfolio. Explore the rooms with your lantern, hunt for hidden ghosts, and summon a haunted mansion of your own.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Creepster&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
@@ -21,88 +21,165 @@
     <p class="tagline">Nairobi-based software engineer in the making. Builder of things that go bump in the night.</p>
     <div class="controls">
       <button id="lantern-toggle" type="button" aria-pressed="true">Lantern: on</button>
+      <button id="lights-toggle" type="button" aria-pressed="false">Lights: off</button>
       <button id="sound-toggle" type="button" aria-pressed="false">Wind: off</button>
     </div>
-    <p class="hint">Move your mouse (or drag a finger) to light the way.</p>
+    <p class="hint">Move your mouse (or drag a finger) to light the way. Three ghosts are hiding in this house. Can you find them?</p>
+    <p class="ghost-count" id="ghost-count" aria-live="polite">Ghosts found: 0 of 3</p>
+    <nav class="map" aria-label="Rooms of the house">
+      <a href="#r1">Library</a><a href="#r2">Clock Tower</a><a href="#r3">Cellar</a><a href="#r4">Spellbook</a>
+      <a href="#r5">Attic</a><a href="#r6">Summoning Circle</a><a href="#r7">Séance</a>
+    </nav>
   </header>
 
   <main id="rooms">
     <section class="room" aria-labelledby="r1">
       <h2 id="r1">The Library <small>About</small></h2>
-      <p>I am a software engineer in the making, based in Nairobi. I build web tools with JavaScript, TypeScript and Python, from study companions with Kiswahili support to Twitch overlays. This haunted house is my Kiroween 2026 entry, built with Kiro.</p>
+      <p>I am a software engineer in the making, based in Nairobi and learning the craft with the Power Learn Project's 1MillionDevs programme. I build web tools with JavaScript, TypeScript and Python, from study companions that explain the cloud in Kiswahili to Twitch overlays and fairer loan decisions. This haunted house is my Kiroween 2026 entry, built with Kiro.</p>
+      <button class="hidden-ghost" type="button" data-ghost="library" aria-label="Something is hiding behind the bookshelf">👻</button>
     </section>
 
     <section class="room" aria-labelledby="r2">
-      <h2 id="r2">The Cellar <small>Projects</small></h2>
+      <h2 id="r2">The Clock Tower <small>Journey</small></h2>
+      <p class="room-intro">Every chime of the clock marks something I built.</p>
+      <ol class="timeline">
+        <li><time datetime="2026-06">June 2026</time><h3>Savannah Precision Loan System</h3><p>A concept for fairer credit: loans that follow harvest seasons, not payslips.</p></li>
+        <li><time datetime="2026-08">August 2026</time><h3>Northstar Sprint, Day 1</h3><p>My first webhook went live on day one of an industry simulation.</p></li>
+        <li><time datetime="2026-08">August 2026</time><h3>Solstice Kiosk</h3><p>Swapped polling for webhooks in an event check-in kiosk.</p></li>
+        <li><time datetime="2026-10">October 2026</time><h3>QuickNotes &amp; its system design</h3><p>A notes app, then a design for the same service at one million users.</p></li>
+        <li><time datetime="2026-10">October 2026</time><h3>AZ-900 Study Buddy</h3><p>Azure exam prep with Kenyan examples, Kiswahili and a free AI tutor.</p></li>
+        <li><time datetime="2026-10">October 2026</time><h3>Chat Cartographer</h3><p>A Twitch overlay that maps a chat's theories and running jokes.</p></li>
+        <li><time datetime="2026-11">November 2026</time><h3>The Haunted Portfolio</h3><p>This house, built with Kiro for Kiroween. You are standing in it.</p></li>
+      </ol>
+    </section>
+
+    <section class="room" aria-labelledby="r3">
+      <h2 id="r3">The Cellar <small>Projects</small></h2>
+      <p class="room-intro">Hover over a portrait (or tap it) to see what lies behind it. Pick a potion to filter.</p>
+      <div class="potions" role="group" aria-label="Filter projects by technology">
+        <button type="button" class="potion" data-filter="all" aria-pressed="true">All potions</button>
+        <button type="button" class="potion" data-filter="python" aria-pressed="false">🐍 Python</button>
+        <button type="button" class="potion" data-filter="javascript" aria-pressed="false">✨ JavaScript</button>
+        <button type="button" class="potion" data-filter="typescript" aria-pressed="false">🔷 TypeScript</button>
+        <button type="button" class="potion" data-filter="ai" aria-pressed="false">🔮 AI</button>
+      </div>
+      <p class="filter-status" id="filter-status" aria-live="polite"></p>
       <div class="grid">
-        <article class="card">
-          <h3>Chat Cartographer</h3>
-          <p>A Twitch chat and overlay tool that collects viewer theories, discoveries and running jokes into a shared visual map.</p>
-          <p class="tags">Twitch · Overlay · Visual map</p>
-          <a href="https://wanjikuk60.github.io/Chat-Cartographer/" rel="noopener">Visit live site</a> ·
-          <a href="https://github.com/WanjikuK60/Chat-Cartographer" rel="noopener">View source</a>
+        <article class="card flip" data-tags="javascript">
+          <div class="flip-inner">
+            <div class="face front"><span class="portrait" aria-hidden="true">🗺️</span><h3>Chat Cartographer</h3><p class="tags">Twitch · Overlay · Visual map</p></div>
+            <div class="face back"><p>A Twitch chat and overlay tool that collects viewer theories, discoveries and running jokes into a shared visual map.</p>
+              <p class="links-row"><a href="https://wanjikuk60.github.io/Chat-Cartographer/" rel="noopener">Visit live site</a> · <a href="https://github.com/WanjikuK60/Chat-Cartographer" rel="noopener">View source</a></p></div>
+          </div>
         </article>
-        <article class="card">
-          <h3>AZ-900 Study Buddy</h3>
-          <p>An unofficial AZ-900 study companion with Kiswahili support, Kenyan examples and original practice questions.</p>
-          <p class="tags">Learning · Azure · Kiswahili</p>
-          <a href="https://wanjikuk60.github.io/AZ-900-Study-Buddy/" rel="noopener">Visit live site</a> ·
-          <a href="https://github.com/WanjikuK60/AZ-900-Study-Buddy" rel="noopener">View source</a>
+        <article class="card flip" data-tags="javascript python ai">
+          <div class="flip-inner">
+            <div class="face front"><span class="portrait" aria-hidden="true">📚</span><h3>AZ-900 Study Buddy</h3><p class="tags">Learning · Azure · Kiswahili</p></div>
+            <div class="face back"><p>An unofficial AZ-900 study companion with Kiswahili support, Kenyan examples, original practice questions and a free AI tutor.</p>
+              <p class="links-row"><a href="https://wanjikuk60.github.io/AZ-900-Study-Buddy/" rel="noopener">Visit live site</a> · <a href="https://github.com/WanjikuK60/AZ-900-Study-Buddy" rel="noopener">View source</a></p></div>
+          </div>
         </article>
-        <article class="card">
-          <h3>Savannah Precision Loan System</h3>
-          <p>A loan-decision framework for informal market vendors in East Africa: harvest-aware repayment, bias audits and human-in-the-loop AI agents.</p>
-          <p class="tags">TypeScript · React · AI ethics</p>
-          <a href="https://wanjikuk60.github.io/savannah-loan-system/" rel="noopener">Visit live site</a> ·
-          <a href="https://github.com/WanjikuK60/savannah-loan-system" rel="noopener">View source</a>
+        <article class="card flip" data-tags="typescript ai">
+          <div class="flip-inner">
+            <div class="face front"><span class="portrait" aria-hidden="true">🌽</span><h3>Savannah Precision Loan System</h3><p class="tags">TypeScript · React · AI ethics</p></div>
+            <div class="face back"><p>A loan-decision framework for informal market vendors in East Africa: harvest-aware repayment, bias audits and human-in-the-loop AI agents.</p>
+              <p class="links-row"><a href="https://wanjikuk60.github.io/savannah-loan-system/" rel="noopener">Visit live site</a> · <a href="https://github.com/WanjikuK60/savannah-loan-system" rel="noopener">View source</a></p></div>
+          </div>
         </article>
-        <article class="card">
-          <h3>Solstice Kiosk</h3>
-          <p>A FastAPI event check-in kiosk that replaces polling with an asynchronous webhook flow.</p>
-          <p class="tags">Python · FastAPI · Webhooks</p>
-          <a href="https://wanjikuk60.github.io/Solstice-Kiosk/" rel="noopener">Visit live site</a> ·
-          <a href="https://github.com/WanjikuK60/Solstice-Kiosk" rel="noopener">View source</a>
+        <article class="card flip" data-tags="python">
+          <div class="flip-inner">
+            <div class="face front"><span class="portrait" aria-hidden="true">🎟️</span><h3>Solstice Kiosk</h3><p class="tags">Python · FastAPI · Webhooks</p></div>
+            <div class="face back"><p>A FastAPI event check-in kiosk that replaces polling with an asynchronous webhook flow.</p>
+              <p class="links-row"><a href="https://wanjikuk60.github.io/Solstice-Kiosk/" rel="noopener">Visit live site</a> · <a href="https://github.com/WanjikuK60/Solstice-Kiosk" rel="noopener">View source</a></p></div>
+          </div>
         </article>
-        <article class="card">
-          <h3>NorthStar Webhook Prototype</h3>
-          <p>My Day 1 build for the Northstar Sprint industry simulation: a FastAPI webhook receiver with a chat-style page for sending test events, input validation and tests.</p>
-          <p class="tags">Python · FastAPI · Webhooks</p>
-          <a href="https://wanjikuk60.github.io/northstar-day1-webhook/" rel="noopener">Visit live site</a> ·
-          <a href="https://github.com/WanjikuK60/northstar-day1-webhook" rel="noopener">View source</a>
+        <article class="card flip" data-tags="python">
+          <div class="flip-inner">
+            <div class="face front"><span class="portrait" aria-hidden="true">⚡</span><h3>NorthStar Webhook Prototype</h3><p class="tags">Python · FastAPI · Webhooks</p></div>
+            <div class="face back"><p>My Day 1 build for the Northstar Sprint industry simulation: a FastAPI webhook receiver with a chat-style tester, input validation and tests.</p>
+              <p class="links-row"><a href="https://wanjikuk60.github.io/northstar-day1-webhook/" rel="noopener">Visit live site</a> · <a href="https://github.com/WanjikuK60/northstar-day1-webhook" rel="noopener">View source</a></p></div>
+          </div>
         </article>
-        <article class="card">
-          <h3>QuickNotes</h3>
-          <p>A lightweight note-taking app with categories, search and notes saved in local storage.</p>
-          <p class="tags">JavaScript · CSS · Local storage</p>
-          <a href="https://wanjikuk60.github.io/quicknotes-app/" rel="noopener">Visit live site</a> ·
-          <a href="https://github.com/WanjikuK60/quicknotes-app" rel="noopener">View source</a>
+        <article class="card flip" data-tags="javascript">
+          <div class="flip-inner">
+            <div class="face front"><span class="portrait" aria-hidden="true">📝</span><h3>QuickNotes</h3><p class="tags">JavaScript · CSS · Local storage</p></div>
+            <div class="face back"><p>A lightweight note-taking app with categories, search and notes saved in local storage, usable by keyboard and screen reader.</p>
+              <p class="links-row"><a href="https://wanjikuk60.github.io/quicknotes-app/" rel="noopener">Visit live site</a> · <a href="https://github.com/WanjikuK60/quicknotes-app" rel="noopener">View source</a></p></div>
+          </div>
         </article>
-        <article class="card">
-          <h3>QuickNotes System Design</h3>
-          <p>A system design for an online notes service for 1 million users: REST API, PostgreSQL data model, capacity estimate and scalable architecture, plus a browser API client.</p>
-          <p class="tags">System design · REST API · PostgreSQL</p>
-          <a href="https://wanjikuk60.github.io/quicknotes-system-design/" rel="noopener">Visit live site</a> ·
-          <a href="https://github.com/WanjikuK60/quicknotes-system-design" rel="noopener">View source</a>
+        <article class="card flip" data-tags="javascript">
+          <div class="flip-inner">
+            <div class="face front"><span class="portrait" aria-hidden="true">🏛️</span><h3>QuickNotes System Design</h3><p class="tags">System design · REST API · PostgreSQL</p></div>
+            <div class="face back"><p>A system design for an online notes service for 1 million users: REST API, PostgreSQL data model, capacity estimate and architecture, plus a browser API client.</p>
+              <p class="links-row"><a href="https://wanjikuk60.github.io/quicknotes-system-design/" rel="noopener">Visit live site</a> · <a href="https://github.com/WanjikuK60/quicknotes-system-design" rel="noopener">View source</a></p></div>
+          </div>
         </article>
-        <article class="card">
-          <h3>Library Management System</h3>
-          <p>A library catalog API with patron and librarian roles, borrow requests, reading lists and space bookings.</p>
-          <p class="tags">TypeScript · Prisma · PostgreSQL</p>
-          <a href="https://github.com/WanjikuK60/library-management-system" rel="noopener">View source</a>
+        <article class="card flip" data-tags="typescript">
+          <div class="flip-inner">
+            <div class="face front"><span class="portrait" aria-hidden="true">📖</span><h3>Library Management System</h3><p class="tags">TypeScript · Prisma · PostgreSQL</p></div>
+            <div class="face back"><p>A library catalog API with patron and librarian roles, borrow requests, reading lists and space bookings.</p>
+              <p class="links-row"><a href="https://github.com/WanjikuK60/library-management-system" rel="noopener">View source</a></p></div>
+          </div>
         </article>
       </div>
     </section>
 
-    <section class="room" aria-labelledby="r3">
-      <h2 id="r3">The Attic <small>Skills</small></h2>
-      <ul class="skills">
-        <li>JavaScript</li><li>TypeScript</li><li>Python</li><li>HTML &amp; CSS</li>
-        <li>Git</li><li>Azure fundamentals</li><li>System design</li>
-      </ul>
+    <section class="room" aria-labelledby="r4">
+      <h2 id="r4">The Spellbook <small>Currently learning</small></h2>
+      <div class="spellbook">
+        <div class="cauldron" aria-hidden="true">
+          <span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span><span class="bubble b4"></span>
+          <div class="pot"></div>
+        </div>
+        <div>
+          <p class="room-intro">Brewing in the cauldron right now:</p>
+          <ul class="ingredients">
+            <li><span aria-hidden="true">☁️</span> <strong>Azure fundamentals</strong>, studying for AZ-900</li>
+            <li><span aria-hidden="true">🏗️</span> <strong>System design</strong>: services that stay up for a million users</li>
+            <li><span aria-hidden="true">⚖️</span> <strong>Fair, human-centred AI</strong> that treats everyone with dignity</li>
+            <li><span aria-hidden="true">🪄</span> <strong>Building with Kiro</strong>: specs, steering and hooks</li>
+          </ul>
+        </div>
+      </div>
+      <button class="hidden-ghost" type="button" data-ghost="spellbook" aria-label="Something is bubbling out of the cauldron">👻</button>
     </section>
 
-    <section class="room" aria-labelledby="r4">
-      <h2 id="r4">The Séance <small>Contact</small></h2>
+    <section class="room" aria-labelledby="r5">
+      <h2 id="r5">The Attic <small>Skills</small></h2>
+      <ul class="skills">
+        <li>JavaScript</li><li>TypeScript</li><li>Python</li><li>FastAPI</li><li>React</li><li>HTML &amp; CSS</li>
+        <li>PostgreSQL</li><li>Git &amp; GitHub Actions</li><li>Azure fundamentals</li><li>System design</li><li>Accessibility</li>
+      </ul>
+      <button class="hidden-ghost" type="button" data-ghost="attic" aria-label="Something is hiding in the rafters">👻</button>
+    </section>
+
+    <section class="room" aria-labelledby="r6">
+      <h2 id="r6">The Summoning Circle <small>Build your own</small></h2>
+      <p class="room-intro">Want a haunted portfolio of your own? Fill in the circle, watch your mansion appear, then download it. It is a single HTML file you can host anywhere, for free, with GitHub Pages.</p>
+      <div class="builder">
+        <form id="builder-form" novalidate>
+          <label>Your name <input name="name" maxlength="60" required value="Your Name"></label>
+          <label>Tagline <input name="tagline" maxlength="120" value="Developer of things that go bump in the night."></label>
+          <label>About you <textarea name="about" rows="3" maxlength="600">I build web apps and I am always learning something new.</textarea></label>
+          <label>Skills <span class="field-hint">(separate with commas)</span> <input name="skills" maxlength="300" value="JavaScript, Python, HTML, CSS, Git"></label>
+          <label>Projects <span class="field-hint">(one per line: Name | Description | Link)</span>
+            <textarea name="projects" rows="4" maxlength="2000">My First Project | A short description of what it does | https://github.com/you/project</textarea></label>
+          <label>Email <input name="email" type="email" maxlength="120" placeholder="you@example.com"></label>
+          <label>GitHub profile link <input name="github" type="url" maxlength="200" placeholder="https://github.com/you"></label>
+          <div class="builder-actions">
+            <button type="submit">Download my mansion</button>
+            <span class="builder-status" id="builder-status" aria-live="polite"></span>
+          </div>
+        </form>
+        <div class="preview-frame">
+          <p class="field-hint">Live preview</p>
+          <iframe id="builder-preview" title="Preview of your haunted portfolio" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="room" aria-labelledby="r7">
+      <h2 id="r7">The Séance <small>Contact</small></h2>
       <p>Summon me through one of these channels.</p>
       <p class="links">
         <a href="mailto:kamandewanjiku60@gmail.com">Email</a>
@@ -114,6 +191,16 @@
   <footer><p>© 2026 Wanjiku Kamande. Built with Kiro for Kiroween.</p></footer>
 
   <div id="ghost" aria-hidden="true">👻</div>
+  <div class="secret" id="secret" role="dialog" aria-modal="true" aria-labelledby="secret-title" hidden>
+    <div class="secret-box">
+      <p class="whisper">The house falls silent...</p>
+      <h2 id="secret-title">You found all three ghosts!</h2>
+      <p>Thank you for exploring every corner of my haunted house. Here is the secret: every project in it was built while I was still learning, and I am only just getting started.</p>
+      <p>If you made it this far, I would love to hear from you: <a href="mailto:kamandewanjiku60@gmail.com">kamandewanjiku60@gmail.com</a></p>
+      <button type="button" id="secret-close">Close</button>
+    </div>
+  </div>
   <script src="script.js"></script>
+  <script src="builder.js"></script>
 </body>
 </html>
