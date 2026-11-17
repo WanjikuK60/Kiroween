@@ -155,7 +155,7 @@
 
     <section class="room" aria-labelledby="r6">
       <h2 id="r6">The Summoning Circle <small>Build your own</small></h2>
-      <p class="room-intro">Want a haunted portfolio of your own? Fill in the circle, watch your mansion appear, then download it. It is a single HTML file you can host anywhere, for free, with GitHub Pages.</p>
+      <p class="room-intro">Want a haunted portfolio of your own? Fill in the circle, watch your mansion appear, then download it as a single HTML file or publish it straight to your own GitHub Pages.</p>
       <div class="builder">
         <form id="builder-form" novalidate>
           <label>Your name <input name="name" maxlength="60" required value="Your Name"></label>
@@ -170,6 +170,14 @@
             <button type="submit">Download my mansion</button>
             <span class="builder-status" id="builder-status" aria-live="polite"></span>
           </div>
+          <fieldset class="deploy">
+            <legend>Or publish it for free on GitHub Pages</legend>
+            <label>Repository name <input id="deploy-repo" name="repo" maxlength="100" value="haunted-portfolio" autocomplete="off" spellcheck="false"></label>
+            <button type="button" id="deploy-button" class="deploy-button">🚀 Deploy to my GitHub Pages</button>
+            <p class="field-hint">You'll sign in with GitHub and allow access to your public repositories. It is used once to create the repository and publish your site, then handed straight back. Nothing is stored.</p>
+            <ol class="deploy-steps" id="deploy-steps" hidden></ol>
+            <p class="deploy-result" id="deploy-result" aria-live="polite"></p>
+          </fieldset>
         </form>
         <div class="preview-frame">
           <p class="field-hint">Live preview</p>
@@ -202,5 +210,6 @@
   </div>
   <script src="script.js"></script>
   <script src="builder.js"></script>
+  <script src="deploy.js"></script>
 </body>
 </html>

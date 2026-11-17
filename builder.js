@@ -149,4 +149,7 @@
   });
 
   preview.srcdoc = buildPage(readForm(), { preview: true });
+
+  // Shared with deploy.js, which publishes the same page to GitHub Pages.
+  window.HauntedBuilder = { buildPage, readForm };
 })();
