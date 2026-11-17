@@ -4,7 +4,7 @@ Kiroween 2026 entry, **Costume Contest** category.
 
 Live site: https://wanjikuk60.github.io/Kiroween/
 
-A portfolio site where the page is dark and you explore it with a flickering lantern that follows your cursor (or finger). Each section is a room in a haunted house:
+A dark, spooky portfolio site. Switch on the lantern to explore it by the light of a flickering flame that follows your cursor (or finger). Each section is a room in a haunted house:
 
 | Room | What's inside |
 | --- | --- |
@@ -17,8 +17,8 @@ A portfolio site where the page is dark and you explore it with a flickering lan
 | The Séance | Contact |
 
 ## Features
-- Lantern that follows the cursor or your finger, with flicker. It can be toggled off.
-- **Lights on** by default: a readable parchment theme. Switch them off for the full haunted darkness, lantern and fog. Your choice is remembered between visits.
+- Lantern that follows the cursor or your finger, with flicker. It starts off; switch it on for the full haunted darkness.
+- **Lights on** mode: a readable parchment theme that turns off the darkness and fog. Remembered between visits.
 - **Ghost hunt**: three ghosts hide in the rooms. Find them all to unlock a secret message.
 - **Portfolio builder**: everything typed into the form is escaped, and only `http(s)` links are kept, so a pasted `javascript:` link can't run.
 - Drifting fog on a canvas layer, plus an occasional ghost flyby.
