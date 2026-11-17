@@ -101,7 +101,7 @@
     soundBtn.setAttribute("aria-pressed", String(on));
     soundBtn.textContent = "Wind: " + (on ? "on" : "off");
   });
-  // Lights: a readable parchment theme that turns off the lantern and fog
+  // Lights (on by default): a readable parchment theme that turns off the lantern and fog
   const lightsBtn = document.getElementById("lights-toggle");
   const setLights = (on) => {
     body.classList.toggle("lights-on", on);
@@ -110,7 +110,8 @@
     try { localStorage.setItem("haunted-lights", on ? "on" : "off"); } catch { /* storage blocked */ }
   };
   lightsBtn.addEventListener("click", () => setLights(!body.classList.contains("lights-on")));
-  try { if (localStorage.getItem("haunted-lights") === "on") setLights(true); } catch { /* storage blocked */ }
+  // Lights are on by default; respect a visitor who switched them off before
+  try { if (localStorage.getItem("haunted-lights") === "off") setLights(false); } catch { /* storage blocked */ }
 
   // Ghost hunt: three hidden ghosts unlock a secret message
   const ghosts = document.querySelectorAll(".hidden-ghost");
