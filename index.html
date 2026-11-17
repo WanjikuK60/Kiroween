@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Creepster&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="lights-on">
+<body class="lantern-off">
   <a class="skip" href="#rooms">Skip to content</a>
   <canvas id="fog" aria-hidden="true"></canvas>
   <div id="darkness" aria-hidden="true"></div>
@@ -20,11 +20,11 @@
     <h1 class="flicker">Wanjiku Kamande</h1>
     <p class="tagline">Nairobi-based software engineer in the making. Builder of things that go bump in the night.</p>
     <div class="controls">
-      <button id="lantern-toggle" type="button" aria-pressed="true">Lantern: on</button>
-      <button id="lights-toggle" type="button" aria-pressed="true">Lights: on</button>
+      <button id="lantern-toggle" type="button" aria-pressed="false">Lantern: off</button>
+      <button id="lights-toggle" type="button" aria-pressed="false">Lights: off</button>
       <button id="sound-toggle" type="button" aria-pressed="false">Wind: off</button>
     </div>
-    <p class="hint">Move your mouse (or drag a finger) to light the way. Three ghosts are hiding in this house. Can you find them?</p>
+    <p class="hint">Switch the lantern on and move your mouse (or drag a finger) to light the way. Three ghosts are hiding in this house. Can you find them?</p>
     <p class="ghost-count" id="ghost-count" aria-live="polite">Ghosts found: 0 of 3</p>
     <nav class="map" aria-label="Rooms of the house">
       <a href="#r1">Library</a><a href="#r2">Clock Tower</a><a href="#r3">Cellar</a><a href="#r4">Spellbook</a>
