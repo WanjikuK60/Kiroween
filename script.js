@@ -75,7 +75,9 @@
     setTimeout(haunt, 6000);
   }
 
-  // Wind ambience generated with WebAudio (no audio files, off by default)
+  // Wind ambience generated with WebAudio (no audio files). On by default, but
+  // browsers only allow sound after the visitor interacts, so it starts at the
+  // first click, tap or key press. A visitor who turns it off keeps it off.
   const soundBtn = document.getElementById("sound-toggle");
   let audio, gain;
   const startWind = () => {
@@ -94,13 +96,24 @@
     src.connect(filter).connect(gain).connect(audio.destination);
     src.start(); lfo.start();
   };
-  soundBtn.addEventListener("click", () => {
-    const on = soundBtn.getAttribute("aria-pressed") !== "true";
+  const windIsOn = () => soundBtn.getAttribute("aria-pressed") === "true";
+  const setWind = (on) => {
     if (on && !audio) startWind();
     if (audio) on ? audio.resume() : audio.suspend();
     soundBtn.setAttribute("aria-pressed", String(on));
     soundBtn.textContent = "Wind: " + (on ? "on" : "off");
+  };
+  soundBtn.addEventListener("click", () => {
+    const on = !windIsOn();
+    setWind(on);
+    try { localStorage.setItem("haunted-wind", on ? "on" : "off"); } catch { /* storage blocked */ }
   });
+  try { if (localStorage.getItem("haunted-wind") === "off") setWind(false); } catch { /* storage blocked */ }
+  const firstGesture = (e) => {
+    ["pointerdown", "keydown", "touchend"].forEach((t) => removeEventListener(t, firstGesture));
+    if (windIsOn() && !soundBtn.contains(e.target)) setWind(true);
+  };
+  ["pointerdown", "keydown", "touchend"].forEach((t) => addEventListener(t, firstGesture));
   // Lights: a readable parchment theme that turns off the lantern and fog
   const lightsBtn = document.getElementById("lights-toggle");
   const setLights = (on) => {
