@@ -114,7 +114,7 @@
     if (windIsOn() && !soundBtn.contains(e.target)) setWind(true);
   };
   ["pointerdown", "keydown", "touchend"].forEach((t) => addEventListener(t, firstGesture));
-  // Email links: mailto only works when an email app is set up, so also copy the address
+  // Email links: mailto only works when an email app is set up, so open Gmail and copy the address instead
   const toast = document.createElement("div");
   toast.className = "toast"; toast.setAttribute("role", "status"); toast.setAttribute("aria-live", "polite");
   document.body.appendChild(toast);
@@ -134,9 +134,12 @@
     return ok;
   };
   document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
-    link.addEventListener("click", async () => {
+    link.addEventListener("click", async (event) => {
       const address = decodeURIComponent(link.getAttribute("href").slice(7).split("?")[0]);
-      showToast((await copyText(address)) ? "📋 Email copied: " + address : "✉️ Email me at " + address);
+      // Open a Gmail "New message" with the address filled in, and copy it for other email services
+      event.preventDefault();
+      window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(address), "_blank", "noopener");
+      showToast((await copyText(address)) ? "📋 Opening Gmail. Address copied too: " + address : "✉️ Email me at " + address);
     });
   });
 
