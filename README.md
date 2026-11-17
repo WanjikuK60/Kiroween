@@ -22,7 +22,7 @@ A dark, spooky portfolio site. Switch on the lantern to explore it by the light 
 - **Ghost hunt**: three ghosts hide in the rooms. Find them all to unlock a secret message.
 - **Portfolio builder**: everything typed into the form is escaped, and only `http(s)` links are kept, so a pasted `javascript:` link can't run.
 - Drifting fog on a canvas layer, plus an occasional ghost flyby.
-- Wind ambience synthesized with WebAudio. It is off by default and needs no audio files.
+- Wind ambience synthesized with WebAudio, with no audio files. It is on by default and starts at your first click, tap or key press (browsers don't allow sound before that). Turn it off once and it stays off.
 - Rooms fade in as you scroll to them.
 - Accessible: skip link, room map, keyboard focus styles, `aria-pressed` toggles, a focus-managed secret dialog (Escape closes it), and `prefers-reduced-motion` support that disables animation.
 
