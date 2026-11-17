@@ -166,6 +166,23 @@ footer { text-align: center; color: var(--dim); padding: 3rem 1rem 5rem; }
 .preview-frame .field-hint { margin: 0 0 .3rem; }
 #builder-preview { width: 100%; height: 520px; border: 1px solid var(--accent); background: #07060b; box-shadow: 0 0 25px var(--glow); }
 
+.deploy { border: 1px dashed var(--accent); padding: 1rem 1.1rem 1.1rem; margin: .4rem 0 0; display: grid; gap: .7rem; }
+.deploy legend { padding: 0 .4rem; color: var(--accent); font-size: 1.05rem; }
+.deploy .field-hint { margin: 0; }
+.deploy-button { justify-self: start; font-size: 1.05rem; border-width: 2px; box-shadow: 0 0 14px var(--glow); }
+.deploy-button:disabled { opacity: .55; cursor: progress; }
+.deploy-steps { margin: 0; padding-left: 1.4rem; font-size: 1rem; color: var(--dim); }
+.deploy-steps li[data-state="active"] { color: var(--ink); }
+.deploy-steps li[data-state="active"]::after { content: " …"; }
+.deploy-steps li[data-state="done"] { color: #7fe08a; }
+.deploy-steps li[data-state="done"]::after { content: " ✓"; }
+.deploy-steps li[data-state="failed"] { color: #ff6b6b; }
+.deploy-steps li[data-state="failed"]::after { content: " ✗"; }
+.deploy-result { margin: 0; font-size: 1rem; min-height: 1.5em; }
+.deploy-result.error { color: #ff6b6b; }
+body.lights-on .deploy-steps li[data-state="done"] { color: #2f7a3e; }
+body.lights-on .deploy-result.error, body.lights-on .deploy-steps li[data-state="failed"] { color: #b3261e; }
+
 /* ---------- Lights on: a readable parchment theme ---------- */
 body.lights-on { --bg: #efe6d4; --ink: #2a2233; --dim: #5d5468; --accent: #b4440f; --glow: rgba(180, 68, 15, .25); }
 body.lights-on #darkness, body.lights-on #fog { opacity: 0; }
